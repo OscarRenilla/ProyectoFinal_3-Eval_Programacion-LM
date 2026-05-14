@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Galería de Coches 🚗</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<!-- Body -->
+<body>
+<!-- Header -->
+<header>
+    <h1>Mi Galería</h1>
+
+    <input type="text" id="buscador" placeholder="Buscar por título...">
+
+    <button id="btnBuscar">Buscar</button>
+
+    <!-- Selector de temas -->
+    <select id="selectorTema">
+        <option id="claro" value="claro">Modo claro</option>
+        <option id="oscuro" value="oscuro">Modo oscuro</option>
+        <option id="personalizado" value="personalizado">Personalizado</option>
+    </select>
+
+    <button id="btnNuevaTarjeta">Añadir tarjeta</button>
+</header>
+
+<!-- Main -->
+<main class="main" id="galeria">
+    <!-- Las tarjetas se generarán aquí dinámicamente -->
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title">${titulo}</h5>
+                <p class="card-text">${texto}</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <h3>Contactanos:</h3>
+    <ul id="Contacto">
+        <li>
+            <a href="Instagram.com"><img src="img/instagram.jpg" alt="Botón Instagram" title="Ir a Instagram"/></a>
+        </li>
+        <li>
+            <a href="Facebook.com"><img src="img/facebook.png" alt="Botón Facebook" title="Ir a Facebook"/></a>
+        </li>
+        <li>
+            <a href="X.com"><img src="img/X.png" alt="Botón X" title="Ir a X"/></a>
+        </li>
+        <li>
+            <a href="Linkedin.com"><img src="img/linkedin.png" alt="Botón Linkedin" title="Ir a Linkedin"/></a>
+        </li>
+        <li>
+            <a href="tiktok.com"><img src="img/tiktok.png" alt="Botón TikTok" title="Ir a TikTok"/></a>
+        </li>
+        <li>
+            <a href="youtube.com"><img src="img/youtube.png"  alt="Botón YouTube" title="Ir a Youtube"/></a>
+        </li>
+    </ul>
+    <p>&copy; 2026 - Proyecto Final 2ªEvaluación - Óscar Renilla</p>
+</footer>
+</body>
+</html>
