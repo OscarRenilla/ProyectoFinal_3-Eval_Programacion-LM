@@ -47,9 +47,9 @@ function registrarEventos() {
         navbar.style.background = colorNav;
         footer.style.background = colorNav;
         main.style.background   = colorBg;
-        document.documentElement.style.setProperty("--nav-bg", colorNav);
-        document.documentElement.style.setProperty("--main-bg", colorBg);
-        document.documentElement.style.setProperty("--card-bg", colorCard);
+        document.documentElement.style.setProperty("--nav-fondo", colorNav);
+        document.documentElement.style.setProperty("--main-fondo", colorBg);
+        document.documentElement.style.setProperty("--tarjeta-fondo", colorCard);
 
         modalTema.hide();
         mostrarToast("Tema personalizado aplicado", "success");
@@ -211,22 +211,22 @@ async function confirmarEliminar() {
     }
 }
 function aplicarTemaClaro() {
-    document.documentElement.style.setProperty("--nav-bg",    "#1a6ab1");
-    document.documentElement.style.setProperty("--main-bg",   "#eaf4ff");
-    document.documentElement.style.setProperty("--card-bg",   "#ffffff");
-    document.documentElement.style.setProperty("--footer-bg", "#1a6ab1");
+    document.documentElement.style.setProperty("--nav-fondo",    "#1a6ab1");
+    document.documentElement.style.setProperty("--main-fondo",   "#eaf4ff");
+    document.documentElement.style.setProperty("--tarjeta-fondo",   "#ffffff");
+    document.documentElement.style.setProperty("--color-footer", "#1a6ab1");
     document.querySelector(".galeria-navbar").style.background = "";
     document.querySelector(".galeria-footer").style.background = "";
     document.querySelector(".galeria-main").style.background   = "";
 }
 
 function aplicarTemaOscuro() {
-    document.documentElement.style.setProperty("--nav-bg",    "#1c1c2e");
-    document.documentElement.style.setProperty("--main-bg",   "#16213e");
-    document.documentElement.style.setProperty("--card-bg",   "#0f3460");
-    document.documentElement.style.setProperty("--footer-bg", "#1c1c2e");
-    document.documentElement.style.setProperty("--text-primary", "#e2e8f0");
-    document.documentElement.style.setProperty("--text-muted",   "#94a3b8");
+    document.documentElement.style.setProperty("--nav-fondo",    "#1c1c2e");
+    document.documentElement.style.setProperty("--main-fondo",   "#16213e");
+    document.documentElement.style.setProperty("--tarjeta-fondo",   "#0f3460");
+    document.documentElement.style.setProperty("--color-footer", "#1c1c2e");
+    document.documentElement.style.setProperty("--texto-primary-color", "#e2e8f0");
+    document.documentElement.style.setProperty("--texto-gris",   "#94a3b8");
     document.querySelector(".galeria-navbar").style.background = "#1c1c2e";
     document.querySelector(".galeria-footer").style.background = "#1c1c2e";
     document.querySelector(".galeria-main").style.background   = "#16213e";

@@ -1,22 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&display=swap");
 
 :root {
-    --nav-bg:       #1a6ab1;
-    --nav-txt:      #ffffff;
-    --main-bg:      #eaf4ff;
-    --card-bg:      #ffffff;
-    --card-border:  rgba(35, 171, 255, 0.18);
-    --accent:       #23abff;
-    --accent2:      #7affd4;
-    --footer-bg:    #1a6ab1;
-    --text-primary: #0d1f3c;
-    --text-muted:   #6b7e99;
+    --nav-fondo: #1a6ab1;
+    --main-fondo: #eaf4ff;
+    --tarjeta-fondo: #ffffff;
+    --borde-tarjeta: rgba(35, 171, 255, 0.18);
+    --texto1: #23abff;
+    --texto2: #7affd4;
+    --color-footer: #1a6ab1;
+    --texto-primary-color: #0d1f3c;
+    --texto-gris: #6b7e99;
 }
 
 body {
     font-family: "Exo 2", sans-serif;
-    background-color: var(--main-bg);
-    color: var(--text-primary);
+    background-color: var(--main-fondo);
+    color: var(--texto-primary-color);
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
@@ -24,7 +23,7 @@ body {
 
 .galeria-navbar {
     display: flex;
-    background: var(--nav-bg);
+    background: var(--nav-fondo);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     transition: background 0.4s ease;
 }
@@ -49,7 +48,7 @@ body {
 .galeria-navbar .navbar-brand {
     font-weight: 900;
     font-size: 1.4rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, var(--texto1), var(--texto2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -57,7 +56,7 @@ body {
 
 .buscador-input {
     border-radius: 20px 0 0 20px;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--texto1);
     font-family: "Exo 2", sans-serif;
     font-weight: 600;
     background: rgba(255,255,255,0.12);
@@ -71,13 +70,13 @@ body {
 }
 
 .btn-buscar {
-    background: var(--accent);
+    background: var(--texto1);
     color: #fff;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--texto1);
     font-weight: 700;
     transition: background 0.2s ease, transform 0.15s ease;
 }
-.btn-buscar:hover { background: var(--accent2); border-color: var(--accent2); color: #000; transform: scale(1.05); }
+.btn-buscar:hover { background: var(--texto2); border-color: var(--texto2); color: #000; transform: scale(1.05); }
 
 .btn-reset {
     background: rgba(255,255,255,0.15);
@@ -89,7 +88,7 @@ body {
 .btn-reset:hover { background: rgba(255,100,100,0.4); border-color: #ff6464; }
 
 .selector-tema {
-    border: 2px solid var(--accent);
+    border: 2px solid var(--texto1);
     border-radius: 20px;
     background: rgba(255,255,255,0.12);
     color: white;
@@ -100,7 +99,7 @@ body {
 .selector-tema option { background: #1a6ab1; color: white; }
 
 .btn-nueva {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, var(--texto1), var(--texto2));
     color: #0d1f3c;
     border: none;
     border-radius: 20px;
@@ -116,13 +115,13 @@ body {
 }
 
 .galeria-main {
-    background-color: var(--main-bg);
+    background-color: var(--main-fondo);
     transition: background-color 0.4s ease;
 }
 
 .tarjeta {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: var(--tarjeta-fondo);
+    border: 1px solid var(--borde-tarjeta);
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(35, 171, 255, 0.08);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -138,7 +137,7 @@ body {
 
 .tarjeta-header {
     height: 8px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: linear-gradient(90deg, var(--texto1), var(--texto2));
 }
 
 .tarjeta-body {
@@ -151,7 +150,7 @@ body {
 .tarjeta-id {
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--texto-gris);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 4px;
@@ -160,13 +159,13 @@ body {
 .tarjeta-titulo {
     font-weight: 800;
     font-size: 1.1rem;
-    color: var(--text-primary);
+    color: var(--texto-primary-color);
     margin-bottom: 6px;
 }
 
 .tarjeta-texto {
     font-size: 0.88rem;
-    color: var(--text-muted);
+    color: var(--texto-gris);
     flex: 1;
     margin-bottom: 12px;
 }
@@ -179,15 +178,15 @@ body {
 .btn-editar {
     flex: 1;
     background: linear-gradient(135deg, #23abff22, #23abff44);
-    border: 1px solid var(--accent);
-    color: var(--accent);
+    border: 1px solid var(--texto1);
+    color: var(--texto1);
     border-radius: 10px;
     font-weight: 700;
     font-size: 0.8rem;
     font-family: "Exo 2", sans-serif;
     transition: background 0.2s, transform 0.15s;
 }
-.btn-editar:hover { background: var(--accent); color: white; transform: scale(1.04); }
+.btn-editar:hover { background: var(--texto1); color: white; transform: scale(1.04); }
 
 .btn-eliminar {
     flex: 1;
@@ -223,7 +222,7 @@ body {
 }
 .galeria-modal .form-control:focus {
     background: rgba(255,255,255,0.12);
-    border-color: var(--accent);
+    border-color: var(--texto1);
     box-shadow: 0 0 0 0.2rem rgba(35,171,255,0.25);
     color: white;
 }
@@ -232,7 +231,7 @@ body {
 .galeria-modal .modal-footer { border-top: 1px solid rgba(35,171,255,0.2); }
 
 .btn-confirmar {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, var(--texto1), var(--texto2));
     color: #0d1f3c;
     border: none;
     font-weight: 700;
@@ -263,7 +262,7 @@ body {
 .btn-peligro:hover { background: #cc0000; color: white; transform: scale(1.03); }
 
 .galeria-footer {
-    background: var(--footer-bg);
+    background: var(--color-footer);
     color: rgba(255,255,255,0.9);
     font-family: "Exo 2", sans-serif;
     font-weight: 600;
@@ -278,7 +277,7 @@ body {
     display: inline-block;
 }
 .footer-link:hover {
-    color: var(--accent2);
+    color: var(--texto2);
     transform: scale(1.2);
 }
 
