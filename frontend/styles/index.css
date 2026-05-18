@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700;900&display=swap");
+
+body {
+    margin: 0;
+    font-family: "Exo 2", sans-serif;
+    background: radial-gradient(ellipse at 60% 40%, #0a1628 0%, #000d1a 100%);
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(35, 171, 255, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(35, 171, 255, 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.landing-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.titulo {
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 6rem);
+    background: linear-gradient(135deg, #23abff, #7affd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    animation: rebote 2s ease-in-out infinite;
+    letter-spacing: -2px;
+}
+
+.subtitulo {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.btn-entrar {
+    background: linear-gradient(135deg, #23abff, #7affd4);
+    color: #000d1a;
+    font-weight: 700;
+    font-family: "Exo 2", sans-serif;
+    border: none;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    box-shadow: 0 0 30px rgba(35, 171, 255, 0.5);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-entrar:hover {
+    box-shadow: 0 0 50px rgba(35, 171, 255, 0.9);
+    transform: scale(1.07);
+    background: linear-gradient(135deg, #7affd4, #23abff);
+    color: #000d1a;
+}
+
+@keyframes rebote {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-18px); }
+}
+
+.rotar {
+    animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+    0%   { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}

@@ -3,17 +3,25 @@ package com.miGaleria.mi_Galeria.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tarjetas")
+@Table(name = "tbl_tarjetas")
 public class Tarjeta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 100)
     private String titulo;
 
-    @Column(length = 2000)
+    @Column(nullable = false, length = 500)
     private String texto;
+
+    public Tarjeta() {}
+
+    public Tarjeta(String titulo, String texto) {
+        this.titulo = titulo;
+        this.texto = texto;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
