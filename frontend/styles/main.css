@@ -23,9 +23,27 @@ body {
 }
 
 .galeria-navbar {
+    display: flex;
     background: var(--nav-bg);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     transition: background 0.4s ease;
+}
+
+#divInicioBtn{
+    width: 100%;
+    justify-content: end;
+}
+
+#barraBusqueda {
+    width: 50%;
+}
+
+#selectorTema {
+    width: 200px;
+}
+
+#btnNuevaTarjeta{
+    width: 200px;
 }
 
 .galeria-navbar .navbar-brand {

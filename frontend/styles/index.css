@@ -18,7 +18,7 @@ body::before {
     pointer-events: none;
 }
 
-.landing-wrapper {
+.pantalla {
     position: relative;
     z-index: 1;
 }
