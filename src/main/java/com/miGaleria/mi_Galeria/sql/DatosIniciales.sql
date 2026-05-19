@@ -19,7 +19,7 @@ VALUES ('Hyundai', 'Hyundai i30 — compacto y eficiente', 'hyundai_i30.webp'),
        ('Porsche', 'Porsche Vision GT — concepto futurista', 'porsche-vision.avif');
 
 /*
-INSERT INTO tbl_tarjetas (titulo, texto, imagen)
+INSERT INTO tbl_tarjetas (titulo, texto)
 VALUES ('Hyundai', 'Hyundai i30 — compacto y eficiente'),
        ('Peugeot', 'Peugeot 5008 7 plazas — espacio familiar'),
        ('Toyota', 'Toyota Yaris Cross Hybrid — económico y ecológico'),
