@@ -7,17 +7,6 @@ body {
     overflow: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-            linear-gradient(rgba(35, 171, 255, 0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(35, 171, 255, 0.07) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-}
-
 .pantalla {
     position: relative;
     z-index: 1;
@@ -64,8 +53,12 @@ body::before {
 }
 
 @keyframes rebote {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-18px); }
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-18px);
+    }
 }
 
 .rotar {
@@ -73,6 +66,10 @@ body::before {
 }
 
 @keyframes girar {
-    0%   { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }

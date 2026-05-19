@@ -1,9 +1,9 @@
 const API_URL = "http://localhost:8080/tarjetas";
 
-const modalCrear    = new bootstrap.Modal(document.getElementById("modalCrear"));
-const modalEditar   = new bootstrap.Modal(document.getElementById("modalEditar"));
+const modalCrear = new bootstrap.Modal(document.getElementById("modalCrear"));
+const modalEditar = new bootstrap.Modal(document.getElementById("modalEditar"));
 const modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
-const modalTema     = new bootstrap.Modal(document.getElementById("modalTema"));
+const modalTema = new bootstrap.Modal(document.getElementById("modalTema"));
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarTarjetas();
@@ -29,24 +29,24 @@ function registrarEventos() {
 
     document.getElementById("selectorTema").addEventListener("change", (e) => {
         const tema = e.target.value;
-        if (tema === "claro")         aplicarTemaClaro();
-        else if (tema === "oscuro")   aplicarTemaOscuro();
+        if (tema === "claro") aplicarTemaClaro();
+        else if (tema === "oscuro") aplicarTemaOscuro();
         else if (tema === "personalizado") {
             modalTema.show();
         }
     });
 
     document.getElementById("btnAplicarTema").addEventListener("click", () => {
-        const navbar   = document.querySelector(".galeria-navbar");
-        const footer   = document.querySelector(".galeria-footer");
-        const main     = document.querySelector(".galeria-main");
+        const navbar = document.querySelector(".galeria-navbar");
+        const footer = document.querySelector(".galeria-footer");
+        const main = document.querySelector(".galeria-main");
         const colorNav = document.getElementById("colorNavbar").value;
-        const colorBg  = document.getElementById("colorMain").value;
-        const colorCard= document.getElementById("colorTarjeta").value;
+        const colorBg = document.getElementById("colorMain").value;
+        const colorCard = document.getElementById("colorTarjeta").value;
 
         navbar.style.background = colorNav;
         footer.style.background = colorNav;
-        main.style.background   = colorBg;
+        main.style.background = colorBg;
         document.documentElement.style.setProperty("--nav-fondo", colorNav);
         document.documentElement.style.setProperty("--main-fondo", colorBg);
         document.documentElement.style.setProperty("--tarjeta-fondo", colorCard);
@@ -76,14 +76,17 @@ async function cargarTarjetas() {
 
 async function buscarTarjetas() {
     const texto = document.getElementById("buscador").value.trim();
-    if (!texto) { cargarTarjetas(); return; }
+    if (!texto) {
+        cargarTarjetas();
+        return;
+    }
 
     document.getElementById("loading").classList.remove("d-none");
     document.getElementById("galeria").innerHTML = "";
 
     try {
         const respuesta = await fetch(`${API_URL}/buscar?titulo=${encodeURIComponent(texto)}`);
-        const tarjetas  = await respuesta.json();
+        const tarjetas = await respuesta.json();
         renderizarTarjetas(tarjetas);
     } catch (error) {
         mostrarToast("Error al buscar tarjetas", "danger");
@@ -91,6 +94,7 @@ async function buscarTarjetas() {
         document.getElementById("loading").classList.add("d-none");
     }
 }
+
 function renderizarTarjetas(tarjetas) {
     const galeria = document.getElementById("galeria");
     galeria.innerHTML = "";
@@ -130,9 +134,10 @@ function renderizarTarjetas(tarjetas) {
         galeria.appendChild(col);
     });
 }
+
 async function crearTarjeta() {
     const titulo = document.getElementById("nuevoTitulo").value.trim();
-    const texto  = document.getElementById("nuevoTexto").value.trim();
+    const texto = document.getElementById("nuevoTexto").value.trim();
 
     if (!titulo || !texto) {
         mostrarToast("Rellena todos los campos", "danger");
@@ -142,15 +147,15 @@ async function crearTarjeta() {
     try {
         const respuesta = await fetch(API_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ titulo, texto })
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({titulo, texto})
         });
 
         if (!respuesta.ok) throw new Error();
 
         // Limpiar campos
         document.getElementById("nuevoTitulo").value = "";
-        document.getElementById("nuevoTexto").value  = "";
+        document.getElementById("nuevoTexto").value = "";
 
         modalCrear.hide();
         mostrarToast("Tarjeta creada correctamente", "success");
@@ -159,16 +164,18 @@ async function crearTarjeta() {
         mostrarToast("Error al crear la tarjeta", "danger");
     }
 }
+
 function abrirEditar(id, titulo, texto) {
-    document.getElementById("editarId").value     = id;
+    document.getElementById("editarId").value = id;
     document.getElementById("editarTitulo").value = titulo;
-    document.getElementById("editarTexto").value  = texto;
+    document.getElementById("editarTexto").value = texto;
     modalEditar.show();
 }
+
 async function guardarEdicion() {
-    const id     = document.getElementById("editarId").value;
+    const id = document.getElementById("editarId").value;
     const titulo = document.getElementById("editarTitulo").value.trim();
-    const texto  = document.getElementById("editarTexto").value.trim();
+    const texto = document.getElementById("editarTexto").value.trim();
 
     if (!titulo || !texto) {
         mostrarToast("Rellena todos los campos", "danger");
@@ -178,8 +185,8 @@ async function guardarEdicion() {
     try {
         const respuesta = await fetch(`${API_URL}/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ titulo, texto })
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({titulo, texto})
         });
 
         if (!respuesta.ok) throw new Error();
@@ -191,16 +198,18 @@ async function guardarEdicion() {
         mostrarToast("Error al actualizar la tarjeta", "danger");
     }
 }
+
 function abrirEliminar(id, titulo) {
-    document.getElementById("eliminarId").value    = id;
+    document.getElementById("eliminarId").value = id;
     document.getElementById("eliminarNombre").textContent = titulo;
     modalEliminar.show();
 }
+
 async function confirmarEliminar() {
     const id = document.getElementById("eliminarId").value;
 
     try {
-        const respuesta = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        const respuesta = await fetch(`${API_URL}/${id}`, {method: "DELETE"});
         if (!respuesta.ok) throw new Error();
 
         modalEliminar.hide();
@@ -210,34 +219,35 @@ async function confirmarEliminar() {
         mostrarToast("Error al eliminar la tarjeta", "danger");
     }
 }
+
 function aplicarTemaClaro() {
-    document.documentElement.style.setProperty("--nav-fondo",    "#1a6ab1");
-    document.documentElement.style.setProperty("--main-fondo",   "#eaf4ff");
-    document.documentElement.style.setProperty("--tarjeta-fondo",   "#ffffff");
+    document.documentElement.style.setProperty("--nav-fondo", "#1a6ab1");
+    document.documentElement.style.setProperty("--main-fondo", "#eaf4ff");
+    document.documentElement.style.setProperty("--tarjeta-fondo", "#ffffff");
     document.documentElement.style.setProperty("--color-footer", "#1a6ab1");
     document.querySelector(".galeria-navbar").style.background = "";
     document.querySelector(".galeria-footer").style.background = "";
-    document.querySelector(".galeria-main").style.background   = "";
+    document.querySelector(".galeria-main").style.background = "";
 }
 
 function aplicarTemaOscuro() {
-    document.documentElement.style.setProperty("--nav-fondo",    "#1c1c2e");
-    document.documentElement.style.setProperty("--main-fondo",   "#16213e");
-    document.documentElement.style.setProperty("--tarjeta-fondo",   "#0f3460");
+    document.documentElement.style.setProperty("--nav-fondo", "#1c1c2e");
+    document.documentElement.style.setProperty("--main-fondo", "#16213e");
+    document.documentElement.style.setProperty("--tarjeta-fondo", "#0f3460");
     document.documentElement.style.setProperty("--color-footer", "#1c1c2e");
     document.documentElement.style.setProperty("--texto-primary-color", "#e2e8f0");
-    document.documentElement.style.setProperty("--texto-gris",   "#94a3b8");
+    document.documentElement.style.setProperty("--texto-gris", "#94a3b8");
     document.querySelector(".galeria-navbar").style.background = "#1c1c2e";
     document.querySelector(".galeria-footer").style.background = "#1c1c2e";
-    document.querySelector(".galeria-main").style.background   = "#16213e";
+    document.querySelector(".galeria-main").style.background = "#16213e";
 }
 
 function mostrarToast(mensaje, tipo) {
-    const toastEl  = document.getElementById("toastMensaje");
+    const toastEl = document.getElementById("toastMensaje");
     const toastTxt = document.getElementById("toastTexto");
     toastTxt.textContent = mensaje;
     toastEl.className = `toast align-items-center text-white border-0 bg-${tipo}`;
-    const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+    const toast = new bootstrap.Toast(toastEl, {delay: 3000});
     toast.show();
 }
 

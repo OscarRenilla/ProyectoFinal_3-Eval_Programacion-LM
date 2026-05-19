@@ -28,7 +28,7 @@ body {
     transition: background 0.4s ease;
 }
 
-#divInicioBtn{
+#divInicioBtn {
     width: 100%;
     justify-content: end;
 }
@@ -41,7 +41,7 @@ body {
     width: 200px;
 }
 
-#btnNuevaTarjeta{
+#btnNuevaTarjeta {
     width: 200px;
 }
 
@@ -59,13 +59,17 @@ body {
     border: 2px solid var(--texto1);
     font-family: "Exo 2", sans-serif;
     font-weight: 600;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.12);
     color: white;
     transition: background 0.3s ease;
 }
-.buscador-input::placeholder { color: rgba(255,255,255,0.55); }
+
+.buscador-input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
 .buscador-input:focus {
-    background: rgba(255,255,255,0.22);
+    background: rgba(255, 255, 255, 0.22);
     box-shadow: none;
 }
 
@@ -76,27 +80,41 @@ body {
     font-weight: 700;
     transition: background 0.2s ease, transform 0.15s ease;
 }
-.btn-buscar:hover { background: var(--texto2); border-color: var(--texto2); color: #000; transform: scale(1.05); }
+
+.btn-buscar:hover {
+    background: var(--texto2);
+    border-color: var(--texto2);
+    color: #000;
+    transform: scale(1.05);
+}
 
 .btn-reset {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.15);
     color: #fff;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 0 20px 20px 0;
     transition: background 0.2s ease;
 }
-.btn-reset:hover { background: rgba(255,100,100,0.4); border-color: #ff6464; }
+
+.btn-reset:hover {
+    background: rgba(255, 100, 100, 0.4);
+    border-color: #ff6464;
+}
 
 .selector-tema {
     border: 2px solid var(--texto1);
     border-radius: 20px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.12);
     color: white;
     font-family: "Exo 2", sans-serif;
     font-weight: 600;
     cursor: pointer;
 }
-.selector-tema option { background: #1a6ab1; color: white; }
+
+.selector-tema option {
+    background: #1a6ab1;
+    color: white;
+}
 
 .btn-nueva {
     background: linear-gradient(135deg, var(--texto1), var(--texto2));
@@ -108,9 +126,10 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     white-space: nowrap;
 }
+
 .btn-nueva:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 16px rgba(35,171,255,0.45);
+    box-shadow: 0 4px 16px rgba(35, 171, 255, 0.45);
     color: #0d1f3c;
 }
 
@@ -186,7 +205,12 @@ body {
     font-family: "Exo 2", sans-serif;
     transition: background 0.2s, transform 0.15s;
 }
-.btn-editar:hover { background: var(--texto1); color: white; transform: scale(1.04); }
+
+.btn-editar:hover {
+    background: var(--texto1);
+    color: white;
+    transform: scale(1.04);
+}
 
 .btn-eliminar {
     flex: 1;
@@ -199,7 +223,12 @@ body {
     font-family: "Exo 2", sans-serif;
     transition: background 0.2s, transform 0.15s;
 }
-.btn-eliminar:hover { background: #ff4444; color: white; transform: scale(1.04); }
+
+.btn-eliminar:hover {
+    background: #ff4444;
+    color: white;
+    transform: scale(1.04);
+}
 
 .galeria-modal {
     background: #0d1f3c;
@@ -215,20 +244,32 @@ body {
 
 .galeria-modal .form-control,
 .galeria-modal .form-select {
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(35, 171, 255, 0.3);
     color: white;
     font-family: "Exo 2", sans-serif;
 }
+
 .galeria-modal .form-control:focus {
-    background: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.12);
     border-color: var(--texto1);
-    box-shadow: 0 0 0 0.2rem rgba(35,171,255,0.25);
+    box-shadow: 0 0 0 0.2rem rgba(35, 171, 255, 0.25);
     color: white;
 }
-.galeria-modal .form-control::placeholder { color: rgba(255,255,255,0.4); }
-.galeria-modal .form-label { color: rgba(255,255,255,0.8); font-weight: 600; font-size: 0.9rem; }
-.galeria-modal .modal-footer { border-top: 1px solid rgba(35,171,255,0.2); }
+
+.galeria-modal .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.galeria-modal .form-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.galeria-modal .modal-footer {
+    border-top: 1px solid rgba(35, 171, 255, 0.2);
+}
 
 .btn-confirmar {
     background: linear-gradient(135deg, var(--texto1), var(--texto2));
@@ -239,17 +280,25 @@ body {
     border-radius: 10px;
     transition: transform 0.2s ease;
 }
-.btn-confirmar:hover { transform: scale(1.04); color: #0d1f3c; }
+
+.btn-confirmar:hover {
+    transform: scale(1.04);
+    color: #0d1f3c;
+}
 
 .btn-cancelar {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: white;
     font-weight: 600;
     font-family: "Exo 2", sans-serif;
     border-radius: 10px;
 }
-.btn-cancelar:hover { background: rgba(255,255,255,0.2); color: white; }
+
+.btn-cancelar:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
 
 .btn-peligro {
     background: #ff4444;
@@ -259,11 +308,16 @@ body {
     border-radius: 10px;
     font-family: "Exo 2", sans-serif;
 }
-.btn-peligro:hover { background: #cc0000; color: white; transform: scale(1.03); }
+
+.btn-peligro:hover {
+    background: #cc0000;
+    color: white;
+    transform: scale(1.03);
+}
 
 .galeria-footer {
     background: var(--color-footer);
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     font-family: "Exo 2", sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
@@ -271,23 +325,40 @@ body {
 }
 
 .footer-link {
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     transition: color 0.2s ease, transform 0.2s ease;
     display: inline-block;
 }
+
 .footer-link:hover {
     color: var(--texto2);
     transform: scale(1.2);
 }
 
-.toast { border-radius: 12px; font-family: "Exo 2", sans-serif; font-weight: 600; }
-.toast.bg-success { background: #198754; }
-.toast.bg-danger  { background: #dc3545; }
+.toast {
+    border-radius: 12px;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 600;
+}
+
+.toast.bg-success {
+    background: #198754;
+}
+
+.toast.bg-danger {
+    background: #dc3545;
+}
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .tarjeta-animar {
