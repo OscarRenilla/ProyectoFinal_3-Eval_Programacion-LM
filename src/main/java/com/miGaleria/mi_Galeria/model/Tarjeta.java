@@ -16,12 +16,16 @@ public class Tarjeta {
     @Column(nullable = false, length = 500)
     private String texto;
 
+    @Column(length = 255)
+    private String imagen;
+
     public Tarjeta() {
     }
 
-    public Tarjeta(String titulo, String texto) {
+    public Tarjeta(String titulo, String texto, String imagen) {
         this.titulo = titulo;
         this.texto = texto;
+        this.imagen = imagen;
     }
 
     public Long getId() {
@@ -46,5 +50,13 @@ public class Tarjeta {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

@@ -1,9 +1,16 @@
 const API_URL = "http://localhost:8080/tarjetas";
+const IMG_BASE = "http://localhost:8080/img/";
+const IMG_DEFAULT = "https://placehold.co/400x220/eaf4ff/1a6ab1?text=Sin+imagen";
 
 const modalCrear = new bootstrap.Modal(document.getElementById("modalCrear"));
 const modalEditar = new bootstrap.Modal(document.getElementById("modalEditar"));
 const modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
 const modalTema = new bootstrap.Modal(document.getElementById("modalTema"));
+
+function getModal(id) {
+    const el = document.getElementById(id);
+    return bootstrap.Modal.getOrCreateInstance(el);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarTarjetas();
@@ -11,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function registrarEventos() {
+
     document.getElementById("btnBuscar").addEventListener("click", buscarTarjetas);
     document.getElementById("buscador").addEventListener("keyup", (e) => {
         if (e.key === "Enter") buscarTarjetas();
@@ -22,31 +30,24 @@ function registrarEventos() {
     });
 
     document.getElementById("btnCrear").addEventListener("click", crearTarjeta);
-
     document.getElementById("btnGuardarEdicion").addEventListener("click", guardarEdicion);
-
     document.getElementById("btnConfirmarEliminar").addEventListener("click", confirmarEliminar);
 
     document.getElementById("selectorTema").addEventListener("change", (e) => {
         const tema = e.target.value;
         if (tema === "claro") aplicarTemaClaro();
         else if (tema === "oscuro") aplicarTemaOscuro();
-        else if (tema === "personalizado") {
-            modalTema.show();
-        }
+        else if (tema === "personalizado") modalTema.show();
     });
 
     document.getElementById("btnAplicarTema").addEventListener("click", () => {
-        const navbar = document.querySelector(".galeria-navbar");
-        const footer = document.querySelector(".galeria-footer");
-        const main = document.querySelector(".galeria-main");
         const colorNav = document.getElementById("colorNavbar").value;
         const colorBg = document.getElementById("colorMain").value;
         const colorCard = document.getElementById("colorTarjeta").value;
 
-        navbar.style.background = colorNav;
-        footer.style.background = colorNav;
-        main.style.background = colorBg;
+        document.querySelector(".galeria-navbar").style.background = colorNav;
+        document.querySelector(".galeria-footer").style.background = colorNav;
+        document.querySelector(".galeria-main").style.background = colorBg;
         document.documentElement.style.setProperty("--nav-fondo", colorNav);
         document.documentElement.style.setProperty("--main-fondo", colorBg);
         document.documentElement.style.setProperty("--tarjeta-fondo", colorCard);
@@ -67,7 +68,7 @@ async function cargarTarjetas() {
         const tarjetas = await respuesta.json();
         renderizarTarjetas(tarjetas);
     } catch (error) {
-        mostrarToast("No se pudo conectar con el servidor. ¿Está arrancado Spring Boot?", "danger");
+        mostrarToast("No se pudo conectar con el servidor.", "danger");
         console.error(error);
     } finally {
         document.getElementById("loading").classList.add("d-none");
@@ -106,25 +107,29 @@ function renderizarTarjetas(tarjetas) {
     document.getElementById("sinResultados").classList.add("d-none");
 
     tarjetas.forEach((t, i) => {
+        const urlImagen = t.imagen ? `${IMG_BASE}${t.imagen}` : IMG_DEFAULT;
+
         const col = document.createElement("div");
         col.className = "col";
 
         const card = document.createElement("div");
         card.className = "tarjeta tarjeta-animar h-100";
         card.style.animationDelay = `${i * 0.05}s`;
-        card.style.opacity = "0"; // fadeUp arranca desde 0
-
+        card.style.opacity = "0";
         card.innerHTML = `
-            <div class="tarjeta-header"></div>
+            <div class="tarjeta-img-wrapper">
+                <img src="${urlImagen}" alt="${escaparHTML(t.titulo)}"  class="tarjeta-img" onerror="this.src='${IMG_DEFAULT}'">
+            </div>
             <div class="tarjeta-body">
                 <div class="tarjeta-id">#${t.id}</div>
                 <div class="tarjeta-titulo">${escaparHTML(t.titulo)}</div>
                 <div class="tarjeta-texto">${escaparHTML(t.texto)}</div>
                 <div class="tarjeta-acciones">
-                    <button class="btn btn-editar" onclick="abrirEditar(${t.id}, '${escaparAttr(t.titulo)}', '${escaparAttr(t.texto)}')">
+                    <button class="btn btn-editar" onclick="abrirEditar(${t.id}, '${escaparAttr(t.titulo)}', '${escaparAttr(t.texto)}', '${escaparAttr(t.imagen || '')}')">
                         <i class="bi bi-pencil me-1"></i>Editar
                     </button>
-                    <button class="btn btn-eliminar" onclick="abrirEliminar(${t.id}, '${escaparAttr(t.titulo)}')">
+                    <button class="btn btn-eliminar"
+                            onclick="abrirEliminar(${t.id}, '${escaparAttr(t.titulo)}')">
                         <i class="bi bi-trash3 me-1"></i>Borrar
                     </button>
                 </div>
@@ -138,9 +143,10 @@ function renderizarTarjetas(tarjetas) {
 async function crearTarjeta() {
     const titulo = document.getElementById("nuevoTitulo").value.trim();
     const texto = document.getElementById("nuevoTexto").value.trim();
+    const imagen = document.getElementById("nuevoImagen").value.trim();
 
     if (!titulo || !texto) {
-        mostrarToast("Rellena todos los campos", "danger");
+        mostrarToast("El título y la descripción son obligatorios", "danger");
         return;
     }
 
@@ -148,14 +154,14 @@ async function crearTarjeta() {
         const respuesta = await fetch(API_URL, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({titulo, texto})
+            body: JSON.stringify({titulo, texto, imagen})
         });
 
         if (!respuesta.ok) throw new Error();
 
-        // Limpiar campos
         document.getElementById("nuevoTitulo").value = "";
         document.getElementById("nuevoTexto").value = "";
+        document.getElementById("nuevoImagen").value = "";
 
         modalCrear.hide();
         mostrarToast("Tarjeta creada correctamente", "success");
@@ -165,10 +171,20 @@ async function crearTarjeta() {
     }
 }
 
-function abrirEditar(id, titulo, texto) {
+function abrirEditar(id, titulo, texto, imagen) {
     document.getElementById("editarId").value = id;
     document.getElementById("editarTitulo").value = titulo;
     document.getElementById("editarTexto").value = texto;
+    document.getElementById("editarImagen").value = imagen;
+
+    const preview = document.getElementById("editarPreview");
+    if (imagen) {
+        preview.src = `${IMG_BASE}${imagen}`;
+        preview.classList.remove("d-none");
+    } else {
+        preview.classList.add("d-none");
+    }
+
     modalEditar.show();
 }
 
@@ -176,9 +192,10 @@ async function guardarEdicion() {
     const id = document.getElementById("editarId").value;
     const titulo = document.getElementById("editarTitulo").value.trim();
     const texto = document.getElementById("editarTexto").value.trim();
+    const imagen = document.getElementById("editarImagen").value.trim();
 
     if (!titulo || !texto) {
-        mostrarToast("Rellena todos los campos", "danger");
+        mostrarToast("El título y la descripción son obligatorios", "danger");
         return;
     }
 
@@ -186,7 +203,7 @@ async function guardarEdicion() {
         const respuesta = await fetch(`${API_URL}/${id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({titulo, texto})
+            body: JSON.stringify({titulo, texto, imagen})
         });
 
         if (!respuesta.ok) throw new Error();

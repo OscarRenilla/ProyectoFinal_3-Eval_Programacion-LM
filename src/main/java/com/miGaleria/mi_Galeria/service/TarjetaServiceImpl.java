@@ -40,6 +40,9 @@ public class TarjetaServiceImpl implements TarjetaService {
 
         existente.setTitulo(tarjeta.getTitulo());
         existente.setTexto(tarjeta.getTexto());
+        if (tarjeta.getImagen() != null && !tarjeta.getImagen().isBlank()) {
+            existente.setImagen(tarjeta.getImagen());
+        }
 
         return tarjetaRepository.save(existente);
     }

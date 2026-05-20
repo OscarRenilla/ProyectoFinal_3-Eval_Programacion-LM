@@ -1,3 +1,13 @@
+/*
+CREATE TABLE tbl_tarjetas
+(
+    id     SERIAL PRIMARY KEY,
+    titulo VARCHAR(255),
+    texto  TEXT,
+    imagen VARCHAR(255)
+);
+*/
+
 INSERT INTO tbl_tarjetas (titulo, texto, imagen)
 VALUES ('Hyundai', 'Hyundai i30 — compacto y eficiente', 'hyundai_i30.webp'),
        ('Peugeot', 'Peugeot 5008 7 plazas — espacio familiar', 'peugeot_5008.jpg'),
@@ -17,6 +27,9 @@ VALUES ('Hyundai', 'Hyundai i30 — compacto y eficiente', 'hyundai_i30.webp'),
        ('Lamborghini', 'Lamborghini Vision GT — futuro hecho realidad', 'Lamborghini-vision-gt.webp'),
        ('Lamborghini', 'Lamborghini Urus — SUV de altas prestaciones', 'Lamborghini-Urus.jpg'),
        ('Porsche', 'Porsche Vision GT — concepto futurista', 'porsche-vision.avif');
+
+select *
+from tbl_tarjetas
 
 /*
 INSERT INTO tbl_tarjetas (titulo, texto)
